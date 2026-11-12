@@ -596,7 +596,7 @@ export default function Home() {
         features.push({
           type: 'Feature',
           properties: { borrador: true },
-          geometry,
+          geometry: geometria,
         });
       }
 

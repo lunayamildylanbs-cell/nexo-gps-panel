@@ -1,0 +1,303 @@
+/* Pantallas grandes */
+@media (min-width: 1500px) {
+  .gps-app:not(.login-page):not(.login-loading) .sidebar {
+    width: 400px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-workspace {
+    left: 400px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .topbar {
+    gap: 15px;
+    padding: 13px 16px;
+  }
+  .brand-lockup {
+    min-width: 175px;
+  }
+  .topbar-center {
+    display: none;
+  }
+  .workspace {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: auto;
+  }
+  .sidebar {
+    height: auto;
+    max-height: none;
+    border-top: 1px solid var(--border);
+    border-right: 0;
+  }
+  .sidebar-content {
+    max-height: 620px;
+    overflow-y: auto;
+  }
+  .map-workspace {
+    padding: 18px 14px;
+  }
+  .map-frame {
+    min-height: 58vh;
+  }
+  .sidebar-footer {
+    position: static;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar {
+    width: 320px;
+    min-width: 0;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-workspace {
+    left: 320px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .mapboxgl-ctrl-top-right {
+    right: 10px;
+  }
+}
+
+/* Pantallas medianas y pequeñas */
+@media (max-width: 760px) {
+  .gps-app:not(.login-page):not(.login-loading) .sidebar {
+    width: min(350px, calc(100vw - 52px));
+    min-width: 0;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-workspace {
+    left: min(350px, calc(100vw - 52px));
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-brand-header {
+    padding: 12px 12px 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-metrics {
+    padding: 9px 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-search {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-tabs {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-tab {
+    font-size: 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar {
+    top: 50%;
+    left: 9px;
+    right: auto;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: 2px;
+    width: 44px;
+    padding: 4px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar-label {
+    display: none;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar .shape-tool-button {
+    width: 34px;
+    height: 36px;
+    min-width: 34px;
+    min-height: 36px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-controls {
+    right: 9px;
+    bottom: 14px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .draw-editor {
+    top: 16px;
+    left: 62px;
+    right: 9px;
+    width: auto;
+    max-height: calc(100% - 32px);
+  }
+}
+
+/* Móviles */
+@media (max-width: 640px) {
+  .gps-app:not(.login-page):not(.login-loading) {
+    min-height: 520px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .topbar {
+    top: 7px;
+    right: 7px;
+    left: 7px;
+    min-height: 54px;
+    height: 54px;
+    padding: 0 9px;
+    gap: 7px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .brand-lockup {
+    min-width: 0;
+    flex: 1;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .brand-symbol {
+    width: 34px;
+    height: 34px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .brand-name {
+    font-size: 15px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .brand-caption {
+    font-size: 9px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .topbar-actions {
+    gap: 3px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .topbar .button {
+    display: flex;
+    justify-content: center;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .topbar .button span {
+    display: none;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar {
+    top: 68px;
+    right: 7px;
+    bottom: auto;
+    left: 7px;
+    width: auto;
+    height: min(43vh, 390px);
+    min-height: 230px;
+    max-height: 390px;
+    border-radius: 11px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-intro {
+    padding: 12px 14px 8px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-intro h1 {
+    font-size: 18px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-description {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-metrics {
+    padding: 0 12px 9px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .metric-tile {
+    padding: 7px 9px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .metric-tile strong {
+    font-size: 19px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-search {
+    min-height: 37px;
+    margin: 0 12px 8px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-tabs {
+    padding: 0 9px 8px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-tab {
+    padding: 7px 4px;
+    font-size: 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-content {
+    padding: 0 12px 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .sidebar-footer {
+    min-height: 48px;
+    padding: 6px 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar {
+    top: calc(min(43vh, 390px) + 105px);
+    left: 9px;
+    right: auto;
+    transform: translateY(0);
+    width: 42px;
+    padding: 4px;
+    gap: 2px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar .shape-tool-button {
+    width: 32px;
+    height: 34px;
+    min-width: 32px;
+    min-height: 34px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-controls {
+    right: 9px;
+    bottom: 14px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-legend {
+    display: none;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-status {
+    right: 9px;
+    bottom: 9px;
+    left: 58px;
+    justify-content: space-between;
+    gap: 8px;
+    max-width: calc(100% - 76px);
+    padding: 8px 10px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-status strong {
+    font-size: 9px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-label {
+    font-size: 8px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .draw-editor {
+    top: calc(min(43vh, 390px) + 105px);
+    right: 58px;
+    bottom: auto;
+    left: 60px;
+    width: auto;
+    max-height: calc(100% - min(43vh, 390px) - 125px);
+    padding: 12px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .mapboxgl-ctrl-top-right {
+    top: calc(min(43vh, 390px) + 105px);
+    right: 9px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .mapboxgl-ctrl-bottom-left {
+    bottom: 62px;
+    left: 8px;
+  }
+  .geofence-actions {
+    padding-left: 42px;
+  }
+  .login-card {
+    padding: 25px 21px;
+  }
+}
+
+/* Teléfonos muy pequeños */
+@media (max-width: 380px) {
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar {
+    left: 5px;
+    width: 38px;
+    padding: 3px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-draw-toolbar .shape-tool-button {
+    width: 30px;
+    height: 32px;
+    min-width: 30px;
+    min-height: 32px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .draw-editor {
+    right: 50px;
+    left: 48px;
+  }
+  .gps-app:not(.login-page):not(.login-loading) .map-bottom-controls {
+    right: 6px;
+  }
+}
+
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

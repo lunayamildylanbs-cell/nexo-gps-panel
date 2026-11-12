@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --font-body: 'DM Sans', Arial, sans-serif;
+  --font-heading: 'Manrope', 'DM Sans', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.gps-app {
+  --page: #f4f6f9;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: #f7f9fc;
+  --surface-hover: #f0f4f9;
+
+  --text: #172033;
+  --text-secondary: #657187;
+  --text-tertiary: #8b95a6;
+
+  --border: #e4e9f0;
+  --border-strong: #d5dde8;
+
+  --primary: #2463eb;
+  --primary-hover: #174fca;
+  --primary-soft: #eaf1ff;
+
+  --green: #15803d;
+  --green-soft: #e8f7ee;
+
+  --orange: #b45309;
+  --orange-soft: #fff4e5;
+
+  --red: #b42318;
+  --red-soft: #fff0ef;
+
+  --shadow: 0 1px 2px rgba(19, 33, 57, 0.04),
+    0 8px 28px rgba(19, 33, 57, 0.04);
+
+  min-height: 100vh;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.gps-app.theme-oscuro {
+  color-scheme: dark;
+
+  --page: #11151c;
+  --surface: #191f29;
+  --surface-raised: #202734;
+  --surface-muted: #171d26;
+  --surface-hover: #262f3e;
+
+  --text: #eef2f8;
+  --text-secondary: #a5b0c2;
+  --text-tertiary: #7d899b;
+
+  --border: #2d3747;
+  --border-strong: #3b4658;
+
+  --primary: #6b9bff;
+  --primary-hover: #8aafff;
+  --primary-soft: #202f4a;
+
+  --green: #55d18a;
+  --green-soft: #173629;
+
+  --orange: #f5b75c;
+  --orange-soft: #3c2d19;
+
+  --red: #ff8c86;
+  --red-soft: #3d2324;
+
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.gps-app button:focus-visible,
+.gps-app input:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  outline-offset: 2px;
+}

@@ -240,14 +240,55 @@ export default function Home() {
     }
   }, []);
 
-  // Polling automático cada 5s
+  // Sincronización en tiempo real (WebSockets) + polling de respaldo
   useEffect(() => {
-    if (rol !== 'admin') return;
+    if (rol !== 'admin' || !supabase) return;
+
     cargarDatos({ silencioso: false });
+
+    const canalRealtime = supabase
+      .channel('nexo-gps-realtime')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'ubicaciones' },
+        (payload) => {
+          const nuevaUb = payload.new;
+          if (!nuevaUb?.dispositivo_id) return;
+
+          setDispositivos((actuales) =>
+            actuales.map((d) =>
+              d.id === nuevaUb.dispositivo_id
+                ? { ...d, ultima_ubicacion: nuevaUb }
+                : d
+            )
+          );
+          setUltimaConsulta(new Date().toISOString());
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'eventos_geocerca' },
+        () => {
+          cargarDatos({ silencioso: true });
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'geocercas' },
+        () => {
+          cargarDatos({ silencioso: true });
+        }
+      )
+      .subscribe();
+
     const intervalo = window.setInterval(() => {
       cargarDatos({ silencioso: true });
     }, INTERVALO_ACTUALIZACION);
-    return () => window.clearInterval(intervalo);
+
+    return () => {
+      window.clearInterval(intervalo);
+      supabase.removeChannel(canalRealtime);
+    };
   }, [rol, cargarDatos]);
 
   // Enriquecer datos con ocupantes y ubicaciones dentro de zonas

@@ -780,10 +780,6 @@ export default function Home() {
       return;
     }
 
-    if (!dibujoFinalizado) {
-      setMensajeDibujo('Primero finaliza el trazo antes de guardar.');
-      return;
-    }
 
     const puntos = puntosDibujoRef.current.map((p) => [Number(p[0]), Number(p[1])]);
     const minimo =

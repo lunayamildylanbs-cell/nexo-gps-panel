@@ -20,6 +20,9 @@ export default function EditorGeocerca({
 }) {
   if (!editorGeocercaAbierto) return null;
 
+  const minimoPuntos =
+    tipoGeocerca === 'circulo' ? 1 : tipoGeocerca === 'rectangulo' || tipoGeocerca === 'linea' ? 2 : 3;
+
   return (
     <section className="draw-editor" aria-label="Editor de geocercas">
       <div className="draw-editor-heading">
@@ -90,7 +93,7 @@ export default function EditorGeocerca({
       {mensajeDibujo && <p className="draw-message">{mensajeDibujo}</p>}
 
       <div className="draw-point-count">
-        Puntos: <strong>{puntosDibujo.length}</strong>
+        Puntos: <strong>{puntosDibujo.length}</strong> / {minimoPuntos} mín.
       </div>
 
       <div className="draw-actions">
@@ -106,9 +109,9 @@ export default function EditorGeocerca({
           type="button"
           className="button button-secondary"
           onClick={terminarDibujo}
-          disabled={!modoDibujo}
+          disabled={!modoDibujo || puntosDibujo.length < minimoPuntos}
         >
-          Terminar
+          Ajustar vértices
         </button>
       </div>
 
@@ -117,7 +120,7 @@ export default function EditorGeocerca({
           type="button"
           className="button button-primary"
           onClick={guardarGeocerca}
-          disabled={!dibujoFinalizado || guardandoGeocerca}
+          disabled={guardandoGeocerca}
         >
           {guardandoGeocerca
             ? 'Guardando...'

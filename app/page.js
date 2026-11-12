@@ -186,6 +186,7 @@ export default function Home() {
             'id,dispositivo_id,geocerca_id,tipo,latitud,longitud,ocurrido_en'
           )
           .order('ocurrido_en', { ascending: false })
+          .order('id', { ascending: false })
           .limit(100),
       ]);
 
@@ -216,8 +217,20 @@ export default function Home() {
           ultima_ubicacion: mapaUbicaciones.get(d.id),
         }))
       );
+
+      // Orden cronológico descendente: si salida y entrada ocurren juntas, salida va primero en el tiempo (más abajo) y entrada después (más arriba)
+      const ordenTipo = { salida: 1, cruce: 2, entrada: 3 };
+      const eventosOrdenados = [...(resEv.data ?? [])].sort((a, b) => {
+        const tA = new Date(a.ocurrido_en).getTime();
+        const tB = new Date(b.ocurrido_en).getTime();
+        if (Math.abs(tB - tA) >= 1000) return tB - tA;
+        const diffTipo = (ordenTipo[b.tipo] ?? 0) - (ordenTipo[a.tipo] ?? 0);
+        if (diffTipo !== 0) return diffTipo;
+        return Number(b.id ?? 0) - Number(a.id ?? 0);
+      });
+
       setGeocercas(resGeo.data ?? []);
-      setEventos(resEv.data ?? []);
+      setEventos(eventosOrdenados);
       setUltimaConsulta(new Date().toISOString());
     } catch (err) {
       setError('Error al sincronizar datos: ' + (err?.message ?? ''));
@@ -263,7 +276,7 @@ export default function Home() {
     geocercasRef.current = geocercasEnriquecidas;
   }, [geocercasEnriquecidas]);
 
-  // Trazar línea punteada del recorrido del dispositivo seleccionado
+  // Trazar línea punteada del recorrido reciente del dispositivo seleccionado
   useEffect(() => {
     const mapa = mapaRef.current;
     if (!mapa || !mapaListo) return;
@@ -796,7 +809,6 @@ export default function Home() {
       setMensajeDibujo('Escribe un nombre para la geocerca.');
       return;
     }
-
 
     const puntos = puntosDibujoRef.current.map((p) => [Number(p[0]), Number(p[1])]);
     const minimo =

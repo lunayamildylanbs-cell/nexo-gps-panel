@@ -266,22 +266,39 @@ export default function Home() {
   // Trazar línea punteada del recorrido del dispositivo seleccionado
   useEffect(() => {
     const mapa = mapaRef.current;
-    if (!mapa || !mapaListo || !dispositivoSeleccionadoId || !supabase) return;
+    if (!mapa || !mapaListo) return;
+
+    const sourceRecorrido = mapa.getSource('recorrido-dispositivo');
+    if (!dispositivoSeleccionadoId || !supabase) {
+      sourceRecorrido?.setData({
+        type: 'Feature',
+        geometry: { type: 'LineString', coordinates: [] },
+      });
+      return;
+    }
+
+    const MINUTOS_ESTELA = 3; // Tiempo en minutos antes de que la línea se borre sola
+    const desdeIso = new Date(Date.now() - MINUTOS_ESTELA * 60 * 1000).toISOString();
 
     supabase
       .from('ubicaciones')
-      .select('longitud,latitud')
+      .select('longitud,latitud,registrado_en')
       .eq('dispositivo_id', dispositivoSeleccionadoId)
-      .order('registrado_en', { ascending: true })
-      .limit(30)
+      .gte('registrado_en', desdeIso)
+      .order('registrado_en', { ascending: false })
+      .limit(25)
       .then(({ data }) => {
         const coords = (data || [])
+          .reverse()
           .map((u) => [Number(u.longitud), Number(u.latitud)])
           .filter((p) => p.every(Number.isFinite));
 
-        mapa.getSource('recorrido-dispositivo')?.setData({
+        sourceRecorrido?.setData({
           type: 'Feature',
-          geometry: { type: 'LineString', coordinates: coords },
+          geometry: {
+            type: 'LineString',
+            coordinates: coords.length >= 2 ? coords : [],
+          },
         });
       });
   }, [dispositivoSeleccionadoId, mapaListo, ultimaConsulta]);
